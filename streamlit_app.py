@@ -41,8 +41,8 @@ def load_pdf_files(uploaded_files):
     retriever_tool = create_retriever_tool(
         retriever,
         name="pdf_search",
-        description="This tool gives you direct access to the uploaded PDF documents. "
-                    "Always use this tool first when the question might be answered from the PDFs."
+        description="이 도구는 업로드된 PDF문서에 직접 접근할 수 있게 해줍니다. "
+                    "질문이 PDF에서 답변될 수 있을 떄는 항상 이 도구를 먼저 사용하세요."
     )
     return retriever_tool
 
@@ -55,10 +55,10 @@ def build_agent(tools):
 
     prompt = ChatPromptTemplate.from_messages([
         ("system",
-         "You are a helpful assistant for KIBO employees. "
-         "First, always try `pdf_search`. "
-         "If `pdf_search` returns no relevant results, immediately call ONLY `web_search`. "
-         "Never mix the two tools. "
+         "당신은 KIBO 직원들을 돕는 유용한 어시스턴트 입니다. "
+         "먼저 항상 `pdf_search`를 사용하세요. "
+         "만약 `pdf_search`에서 관련된 결과가 없다면, 즉시, `web_search`만 호출하세요. "
+         "두 도구를 절대 섞어서 사용하지 마세요. "
          "Answer in Korean with a professional and friendly tone, including emojis."),
         ("placeholder", "{chat_history}"),
         ("human", "{input}"),
@@ -93,7 +93,7 @@ def main():
     st.set_page_config(page_title="기술보증기금 AI 비서", layout="wide", page_icon="🤖")
     st.image('data/kibo_image.jpg', width=800)
     st.markdown('---')
-    st.title("안녕하세요! RAG + Web을 활용한 '기술보증기금 AI 비서' 입니다")  
+    st.title("Hello! RAG + Web을 활용한 '기술보증기금 AI 비서' 입니다")  
 
     with st.sidebar:
         openai_api = st.text_input("OPENAI API 키", type="password")
